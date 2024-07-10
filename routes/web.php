@@ -13,9 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+// Route::get('/', function () {
     return view('layout.admin');
-});
-Route::get('/test', function () {
-    return view('layout.admin.test');
-});
+// });
+// Route::get('/test', function () {
+    // return view('layout.admin.test');
+// });
