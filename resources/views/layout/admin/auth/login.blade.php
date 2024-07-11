@@ -19,7 +19,8 @@
 
 </head>
 
-<body class="hold-transition login-page">
+<body class="hold-transition login-page"
+    style="background-size: cover; background-image:url('{{ asset('images/login.jpg') }}')">
 
     <div class="login-box">
         <div class="login-logo">

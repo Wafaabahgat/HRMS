@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Admin_panel_settingController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
@@ -26,6 +27,13 @@ Route::group(
     function () {
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard'); //route
         Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
+        
+        /*  بداية الضبط العام */
+        Route::get(
+            '/generalSettings',
+            [Admin_panel_settingController::class, 'index']
+        )
+            ->name('admin_panel_settings.index');
     },
 );
 
@@ -49,6 +57,7 @@ Route::group(
 
 );
 
+// when page not found
 Route::fallback(
     function () {
         return redirect()->route('admin.showlogin');
