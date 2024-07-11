@@ -14,9 +14,12 @@ class Admin_panel_settingController extends Controller
     public function index()
     {
         $com_code = auth()->user()->com_code;
-        $data = Admin_panel_setting::select('*')->where('com_code', $com_code)->first();
+        
+        $data = Admin_panel_setting::select('*')
+             ->where('com_code', $com_code)
+            ->first();
 
-           dd($data);
+        // dd($data);
         return view(
             'layout.admin.Admin_panel_setting.index',
             ['data' => $data]

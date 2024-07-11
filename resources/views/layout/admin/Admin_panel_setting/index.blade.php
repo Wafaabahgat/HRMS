@@ -32,7 +32,7 @@
                         </tr>
                     </table>
                 @else
-                    <p class="bg-danger text-center"> عفوا لاتوجد بيانات لعرضها</p>
+                    <p class="bg-danger text-center">عفوا لاتوجد بيانات لعرضها</p>
                 @endif
 
             </div>

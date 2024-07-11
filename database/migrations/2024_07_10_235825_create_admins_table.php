@@ -21,7 +21,7 @@ return new class extends Migration
             $table->integer('updated_by')->default(1);
             $table->tinyInteger('active')->default(1);
             $table->date('date')->default(now()->format('Y-m-d'));
-            $table->integer('comp_code')->default(0);
+            $table->integer('com_code')->default(0);
             $table->timestamps();
         });
     }
