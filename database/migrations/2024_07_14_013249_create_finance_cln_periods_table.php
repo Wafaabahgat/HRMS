@@ -25,7 +25,7 @@ return new class extends Migration
             $table->date('start_date_for_pasma');
             $table->date('end_date_for_pasma');
             $table->integer('added_by');
-            $table->integer('updated');
+            $table->integer('updated_by');
             $table->integer('com_code');
             $table->timestamps();
         });

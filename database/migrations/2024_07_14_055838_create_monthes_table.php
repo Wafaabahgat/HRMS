@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('name_en', 50);
-            $table->timestamps();
+         
         });
 
         DB::table('monthes')->insert(

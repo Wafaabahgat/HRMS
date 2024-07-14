@@ -4,8 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Finance_calender;
+use App\Models\Finance_cln_period;
+use App\Models\Month;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use DateInterval;
+use DatePeriod;
+use DateTime;
+
 
 class Finance_calendersController extends Controller
 {
@@ -48,7 +54,38 @@ class Finance_calendersController extends Controller
             $dataToInsert['added_by'] = auth()->user()->id;
             $dataToInsert['com_code'] = auth()->user()->com_code;
 
-            Finance_calender::create($dataToInsert);
+            $falg = Finance_calender::create($dataToInsert);
+            
+            /////////////////////////////////////////////
+            if ($falg) {
+                $dataParent = Finance_calender::select("id")->where($dataToInsert)->first();
+                $startDate = new DateTime($request->start_date);
+                $endDate = new DateTime($request->end_date);
+                $dareInterval = new DateInterval('P1M');
+                $datePerioud = new DatePeriod($startDate, $dareInterval, $endDate);
+                
+                foreach ($datePerioud as $date) {
+                    $dataMonth['finance_calenders_id'] = $dataParent['id'];
+                    $Montname_en = $date->format('F');
+                    $dataParentMonth = Month::select("id")->where(['name_en' => $Montname_en])->first();
+                    $dataMonth['MONTH_ID'] = $dataParentMonth['id'];
+                    $dataMonth['FINANCE_YR'] = $dataToInsert['FINANCE_YR'];
+                    $dataMonth['START_DATE_M'] = date('Y-m-01', strtotime($date->format('Y-m-d')));
+                    $dataMonth['END_DATE_M'] = date('Y-m-t', strtotime($date->format('Y-m-d')));
+                    $dataMonth['year_and_month'] = date('Y-m', strtotime($date->format('Y-m-d')));
+                    $datediff = strtotime($dataMonth['END_DATE_M']) - strtotime($dataMonth['START_DATE_M']);
+                    $dataMonth['number_of_days'] = round($datediff / (60 * 60 * 24)) + 1;
+                    $dataMonth['com_code'] = auth()->user()->com_code;
+                    $dataMonth['updated_at'] = date("Y-m-d H:i:s");
+                    $dataMonth['created_at'] = date("Y-m-d H:i:s");
+                    $dataMonth['added_by'] = auth()->user()->id;
+                    $dataMonth['updated_by'] = auth()->user()->id;
+                    $dataMonth['start_date_for_pasma'] = date('Y-m-01', strtotime($date->format('Y-m-d')));
+                    $dataMonth['end_date_for_pasma'] = date('Y-m-t', strtotime($date->format('Y-m-d')));
+                    Finance_cln_period::insert($dataMonth);
+                }
+            }
+            /////////////////////////////////////////////
 
             DB::commit();
             return redirect()->route('finance_calender.index')->with(['success' => 'تم إدخال البيانات بنجاح']);
