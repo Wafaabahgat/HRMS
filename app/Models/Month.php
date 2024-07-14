@@ -8,7 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Month extends Model
 {
     use HasFactory;
-    protected $table = 'months';
+    
+    protected $table="monthes";
     public $timestamps = false;
     protected $guarded = [];
     
