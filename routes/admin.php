@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\Admin_panel_settingController;
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\Finance_calendersController;
 use App\Http\Controllers\Admin\LoginController;
 use Illuminate\Support\Facades\Route;
 
@@ -29,23 +30,12 @@ Route::group(
         Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
 
         /*  بداية الضبط العام */
-        Route::get(
-            '/generalSettings',
-            [Admin_panel_settingController::class, 'index']
-        )
-            ->name('admin_panel_settings.index');
-            
-        Route::get(
-            '/generalSettingsEdit',
-            [Admin_panel_settingController::class, 'edit']
-        )
-            ->name('admin_panel_settings.edit');
-            
-        Route::get(
-            '/generalSettingsupdated',
-            [Admin_panel_settingController::class, 'update']
-        )
-            ->name('admin_panel_settings.update');
+        Route::get('/generalSettings', [Admin_panel_settingController::class, 'index'])->name('admin_panel_settings.index');
+        Route::get('/generalSettingsEdit', [Admin_panel_settingController::class, 'edit'])->name('admin_panel_settings.edit');
+        Route::get('/generalSettingsupdated', [Admin_panel_settingController::class, 'update'])->name('admin_panel_settings.update');
+
+        /*  بداية السنوات الماليه */
+        Route::resource('/finance_calender', Finance_calendersController::class);
     },
 );
 

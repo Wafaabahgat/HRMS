@@ -13,6 +13,14 @@ return new class extends Migration
     {
         Schema::create('finance_calenders', function (Blueprint $table) {
             $table->id();
+            $table->integer('FINANCE_YR');
+            $table->string('FINANCE_YR_DESC',225);
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->tinyInteger('is_open')->default(0);
+            $table->integer('com_code');
+            $table->integer('added_by');
+            $table->integer('updated_by')->nullable();
             $table->timestamps();
         });
     }

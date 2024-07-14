@@ -26,6 +26,7 @@
             <div class="card-body">
                 @if (@isset($data) and !@empty($data))
                     <table id="example2" class="table table-bordered table-hover">
+                        
                         <tr>
                             <td class="width30">اسم الشركة</td>
                             <td class="width30">{{ $data['company_name'] }}</td>
