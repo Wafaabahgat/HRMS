@@ -27,13 +27,25 @@ Route::group(
     function () {
         Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard'); //route
         Route::get('/logout', [LoginController::class, 'logout'])->name('admin.logout');
-        
+
         /*  بداية الضبط العام */
         Route::get(
             '/generalSettings',
             [Admin_panel_settingController::class, 'index']
         )
             ->name('admin_panel_settings.index');
+            
+        Route::get(
+            '/generalSettingsEdit',
+            [Admin_panel_settingController::class, 'edit']
+        )
+            ->name('admin_panel_settings.edit');
+            
+        Route::get(
+            '/generalSettingsupdated',
+            [Admin_panel_settingController::class, 'update']
+        )
+            ->name('admin_panel_settings.update');
     },
 );
 

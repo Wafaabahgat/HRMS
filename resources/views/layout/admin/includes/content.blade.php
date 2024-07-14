@@ -13,6 +13,22 @@
                     </ol>
                 </div><!-- /.col -->
             </div><!-- /.row -->
+
+            
+                {{-- <h1>hjkl</h1>  --}}
+
+                @if (Session::has('error'))
+                    <div class="alert alert-danger text-right" role="alert">
+                        {{ Session::get('error') }}
+                    </div>
+                @endif
+                @if (Session::has('success'))
+                    <div class="alert alert-success text-right" role="alert">
+                        {{ Session::get('success') }}
+                    </div>
+                @endif
+       
+
             @yield('content')
         </div>
     </div>
