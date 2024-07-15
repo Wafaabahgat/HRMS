@@ -36,6 +36,12 @@ Route::group(
 
         /*  بداية السنوات الماليه */
         Route::resource('/finance_calender', Finance_calendersController::class);
+
+        Route::post('/finance_calender/show_year_monthes', [Finance_calendersController::class, 'show_year_monthes'])
+            ->name('finance_calender.show_year_monthes');
+
+        Route::get('/finance_calender/do_open/{id}', [Finance_calendersController::class, 'do_open'])
+            ->name('finance_calender.do_open');
     },
 );
 

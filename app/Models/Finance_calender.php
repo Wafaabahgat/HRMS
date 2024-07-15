@@ -24,6 +24,7 @@ class Finance_calender extends Model
             'start_date' => 'required',
         ];
     }
+  
 
     public function added()
     {
