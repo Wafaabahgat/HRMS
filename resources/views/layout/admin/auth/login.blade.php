@@ -30,6 +30,8 @@
         <div class="card">
             <div class="card-body login-card-body">
                 <p class="login-box-msg mb-2">تسجيل الدخول</p>
+
+                {{-- error --}}
                 @if (Session::has('error'))
                     <div class="alert alert-danger alert-dismissible fade show" role="alert">
                         {{ Session::get('error') }}

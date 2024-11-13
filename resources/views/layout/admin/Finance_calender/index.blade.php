@@ -21,7 +21,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title card_title_center"> بيانات السنوات الماليه
+                <h3 class="card-title card_title_center">بيانات السنوات الماليه
                     <a class="btn btn-sm btn-success" href={{ route('finance_calender.create') }}>اضافه جديده</a>
                 </h3>
             </div>
@@ -46,13 +46,13 @@
                                     <td> {{ $info->start_date }} </td>
                                     <td> {{ $info->end_date }} </td>
                                     <td> {{ $info->added->name }} </td>
-                                    {{-- <td>
+                                    <td>
                                         @if ($info->updated_by > 0)
-                                            {{ $info->updatedby->name }}
+                                            {{ $info->updatedBy->name }}
                                         @else
                                             لايوجد
                                         @endif
-                                    </td> --}}
+                                    </td>
                                     <td>
                                         @if ($info->is_open == 0)
                                             @if ($CheckDataOpenCounter == 0)
@@ -65,6 +65,7 @@
 
                                             <button class="btn btn-sm btn-info show_year_monthes"
                                                 data-id="{{ $info->id }}">عرض الشهور</button>
+
                                             <form action="{{ route('finance_calender.destroy', $info->id) }}"
                                                 method="post">
                                                 @csrf
@@ -87,6 +88,7 @@
             </div>
         </div>
     </div>
+
     {{-- >عرض الشهور للسنة المالية --}}
     <div class="modal fade " id="show_year_monthesModal">
         <div class="modal-dialog modal-xl">
@@ -96,9 +98,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span></button>
                 </div>
-                <div class="modal-body" id="show_year_monthesModalBody">
-
-                </div>
+                <div class="modal-body" id="show_year_monthesModalBody"></div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-outline-light" data-dismiss="modal">Close</button>
                     <button type="button" class="btn btn-outline-light">Save changes</button>
