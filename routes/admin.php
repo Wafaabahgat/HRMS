@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\BranchesController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\Finance_calendersController;
 use App\Http\Controllers\Admin\LoginController;
+use App\Http\Controllers\Admin\ShiftsTypesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -47,6 +48,9 @@ Route::group(
 
         /*  Branches */
         Route::resource( '/branches', BranchesController::class );
+
+        /*  shifts */
+        Route::resource( '/shifts-types', ShiftsTypesController::class );
     }
     ,
 );
