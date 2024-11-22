@@ -45,7 +45,6 @@ class ShiftsTypesController extends Controller {
                 'to_time',
                 'total_hours'
             ] );
-            $dataToInsert[ 'added_by' ] = auth()->user()->id;
 
             $CheckExetions =  get_cols_where_row( new Shiftes_type(), array( 'id' ), $dataToInsert );
 
@@ -53,7 +52,8 @@ class ShiftsTypesController extends Controller {
                 return redirect()->back()->with( [ 'error' => 'عفوا هذه البيانات مسجله من قبل' ] )->withInput();
             }
             $dataToInsert[ 'active' ] = $request->active;
-
+            $dataToInsert[ 'added_by' ] = auth()->user()->id;
+            $dataToInsert['com_code'] = $com_code;
             DB::beginTransaction();
 
             insert ( new Shiftes_type(), $dataToInsert );
@@ -81,12 +81,12 @@ class ShiftsTypesController extends Controller {
 
     public function edit( string $id ) {
         $com_code = auth()->user()->com_code;
-        $data = get_cols_where_row( new Shiftes_type(), array( '*' ), array('id'=>$id, 'com_code'=>$com_code ) );
+        $data = get_cols_where_row( new Shiftes_type(), array( '*' ), array( 'id'=>$id, 'com_code'=>$com_code ) );
 
         if ( empty( $data ) ) {
-            return redirect()->back()->with( [ 'error' => 'عفوا غير قادر للوصول الي البايات المطلوبه' ] );
+            return redirect()->back()->with( [ 'error' => 'عفوا غير قادر للوصول الي للبيانات المطلوبه' ] );
         }
-        
+
         return view(
             'layout.admin.shifts-types.edit',
             [ 'data' => $data ]
@@ -126,5 +126,8 @@ class ShiftsTypesController extends Controller {
             DB::rollBack();
             return redirect()->back()->with( [ 'error' => 'عفوا حدث خطأ ما' ] );
         }
+    }
+    public function ajax_search( Request $request ) {
+
     }
 }

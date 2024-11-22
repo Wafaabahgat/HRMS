@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-define( 'PAGENATION_COUNT', 10 );
+define( 'PAGENATION_COUNT', 4 );
 
 Route::group(
     [

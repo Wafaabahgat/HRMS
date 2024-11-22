@@ -25,9 +25,8 @@
             </div>
             <div class="card-body">
                 <form action="{{ route('shifts-types.store') }}" method="post">
+                    @csrf
                     <div class="row">
-                        @csrf
-
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label>نوع الشفت</label>
